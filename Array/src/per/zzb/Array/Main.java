@@ -23,7 +23,7 @@ public class Main {
 //            System.out.println("score = " + score);
 //        }
 //    }
-        MyArray myArray = new MyArray(20);
+        MyArray<Integer> myArray = new MyArray<>(20);
         for (int j = 0; j < 10; j++) {
             myArray.addLast(j);
         }

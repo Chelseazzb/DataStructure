@@ -1,5 +1,6 @@
 package per.zzb.Array;
 
+
 import java.util.Arrays;
 
 /**
@@ -7,11 +8,11 @@ import java.util.Arrays;
  * @Author : Zhai Zhibin
  * @Date : 2020/9/28 22:52
  * @Description : 自定义数组
- * @Modified_by :
- * @Version : 1.0
+ * @Modified_by : zzb，改为泛型数组
+ * @Version : 2.0
  **/
-public class MyArray {
-    private int[] data; //静态数组
+public class MyArray<E> {
+    private E[] data; //静态数组
     private int size; //数组的长度
 
     /**
@@ -23,7 +24,7 @@ public class MyArray {
      * @Return
      **/
     public MyArray(int capacity){
-        data = new int[capacity];
+        data = (E[])new Object[capacity];
         size = 0;
     }
 
@@ -55,7 +56,7 @@ public class MyArray {
      * @Param [e]
      * @Return void
      **/
-    public void addLast(int e){
+    public void addLast(E e){
 //        if (size == data.length){
 //            throw new IllegalArgumentException("addLast failed, array is full");
 //        }
@@ -74,7 +75,7 @@ public class MyArray {
      * @Param [index, e]
      * @Return void
      **/
-    public void add(int index, int e){
+    public void add(int index, E e){
         if (index < 0 || index >= data.length){ //判断索引值大小
             throw new IllegalArgumentException("add failed, argument is not allowed");
         }
@@ -93,12 +94,12 @@ public class MyArray {
 
 
     //向数组中的第一个位置添加元素
-    public void addFirst(int e){
+    public void addFirst(E e){
         add(0,e); //函数复用
     }
 
     //获得数组中指定位置的元素
-    public int get(int index){
+    public E get(int index){
         if (index < 0 || index >= data.length)
             throw new IllegalArgumentException("get failed, argument is not allowed");
 
@@ -106,7 +107,7 @@ public class MyArray {
     }
 
     //修改数组中指定位置的元素
-    public void set(int index, int e){
+    public void set(int index, E e){
         if (index < 0 || index >= data.length)
             throw new IllegalArgumentException("set failed, argument is not allowed");
 
@@ -114,7 +115,7 @@ public class MyArray {
     }
 
     //查看数组中是否存在该元素以及存在的数量
-    public int contain(int e){
+    public int contain(E e){
         int count = 0;
 
         for(int i = 0 ; i < size ; i ++){
@@ -126,9 +127,9 @@ public class MyArray {
     }
 
     //查找元素的位置
-    public int find(int e){
+    public int find(E e){
         for (int i = 0 ; i < size ; i ++){
-            if (data[i] == e){
+            if (data[i].equals(e)){
                 return i;
             }
         }
@@ -136,11 +137,11 @@ public class MyArray {
     }
 
     //查找数组中所有值为e的位置
-    public String findAll(int e){
+    public String findAll(E e){
        String position = ""; //所有位置的字符串
 
         for (int i = 0 ; i < size ; i ++){
-            if (data[i] == e){
+            if (data[i].equals(e)){
                 position += i;
                 position +=",";
             }
@@ -149,37 +150,37 @@ public class MyArray {
     }
 
     //删除数组中的元素
-    public int remove(int index){
+    public E remove(int index){
         if (index < 0 || index >= data.length)
             throw new IllegalArgumentException("get failed, argument is not allowed");
 
-        int deleteElement = data[index];
+        E deleteElement = data[index];
         for (int i = index ; i < size ; i ++){
             data[i] = data[i + 1];
         }
 
         size --;
-        return index;
+        return deleteElement;
     }
 
     //删除数组中第一个元素
-    public int removeFirst(){
+    public E removeFirst(){
         return remove(0);
     }
 
     //删除数组中最后一个元素
-    public int removeLast(){
+    public E removeLast(){
         return remove(size - 1);
     }
 
     //删除数组中指定元素的值第一个位置
-    public int removeElement(int e){
+    public E removeElement(E e){
         int index = find(e);
         return remove(index);
     }
 
     //删除数组中所有值为e的元素
-    public void removeAllElement(int e){
+    public void removeAllElement(E e){
         String position;
         position = findAll(e);
 
