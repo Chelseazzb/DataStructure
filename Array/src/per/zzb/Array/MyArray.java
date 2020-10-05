@@ -1,8 +1,6 @@
 package per.zzb.Array;
 
 
-import java.util.Arrays;
-
 /**
  * @ClassName : MyArray
  * @Author : Zhai Zhibin
@@ -81,7 +79,8 @@ public class MyArray<E> {
         }
 
         if (size == data.length){ //判断数组是否已满
-            throw new IllegalArgumentException("add failed, array is full");
+//            throw new IllegalArgumentException("add failed, array is full");
+            resize(2 * data.length);
         }
 
         for (int i = size - 1 ; i >= index ; i --){
@@ -90,6 +89,16 @@ public class MyArray<E> {
 
         data[index] = e; //用新的值覆盖掉原来的值
         size ++; //数组的长度加1
+    }
+
+    //动态数组扩容
+    private void resize(int newCapacity) {
+        E[] newData = (E[])new Object[newCapacity];
+
+        for (int i = 0 ; i < size ; i ++){
+            newData[i] = data[i];
+        }
+        data = newData;
     }
 
 
@@ -160,6 +169,10 @@ public class MyArray<E> {
         }
 
         size --;
+        if (size == getCapacity() / 4 && getCapacity() / 2 != 0) { //注意这里的小bug
+            resize(getCapacity() / 2);
+        }
+        data[size] = null; //
         return deleteElement;
     }
 
