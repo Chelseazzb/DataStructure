@@ -23,7 +23,7 @@ public class Main {
 //            System.out.println("score = " + score);
 //        }
 //    }
-        MyArray<Integer> myArray = new MyArray<>(20);
+        MyArray<Integer> myArray = new MyArray<>();
         for (int j = 0; j < 10; j++) {
             myArray.addLast(j);
         }
@@ -62,6 +62,11 @@ public class Main {
         System.out.println("myArray.findAll(2) = " + myArray.findAll(2));
 
         myArray.removeAllElement(2);
+        System.out.println(myArray);
+
+        myArray.remove(2);
+        myArray.remove(2);
+        myArray.remove(2);
         System.out.println(myArray);
 
         //尝试边界情况，是不是预期的效果
