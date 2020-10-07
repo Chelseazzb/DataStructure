@@ -1,4 +1,4 @@
-package per.zzb.Array;
+package per.zzb.array;
 
 
 /**

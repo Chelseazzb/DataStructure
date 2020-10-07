@@ -1,4 +1,4 @@
-package per.zzb.Array;
+package per.zzb.array;
 /**
  * @Author Zhai Zhibin
  * @Description 数组的基础定义和遍历
