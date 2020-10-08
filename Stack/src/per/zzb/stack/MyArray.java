@@ -1,4 +1,4 @@
-package per.zzb.array;
+package per.zzb.stack;
 
 
 /**
@@ -74,7 +74,7 @@ public class MyArray<E> {
      * @Return void
      **/
     public void add(int index, E e){
-        if (index < 0 || index >= data.length){ //判断索引值大小
+        if (index < 0 || index > size){ //判断索引值大小
             throw new IllegalArgumentException("add failed, argument is not allowed");
         }
 
@@ -113,6 +113,16 @@ public class MyArray<E> {
             throw new IllegalArgumentException("get failed, argument is not allowed");
 
         return data[index];
+    }
+
+    //获得数组中的最后一个元素
+    public E getLast(){
+        return get(size-1);
+    }
+
+    //获得数组中的第一个元素
+    public E getFirst(){
+        return get(0);
     }
 
     //修改数组中指定位置的元素
@@ -160,7 +170,7 @@ public class MyArray<E> {
 
     //删除数组中的元素
     public E remove(int index){
-        if (index < 0 || index >= data.length)
+        if (index < 0 || index >= size)
             throw new IllegalArgumentException("get failed, argument is not allowed");
 
         E deleteElement = data[index];
