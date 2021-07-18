@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class MyArrayTest {
 
+    MyArray<Integer> array = new MyArray<>();
+
     @Test
     void getSize() {
     }
@@ -59,6 +61,7 @@ class MyArrayTest {
 
     @Test
     void removeFirst() {
+        array.removeFirst();
     }
 
     @Test
