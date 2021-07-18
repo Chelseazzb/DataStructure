@@ -30,6 +30,9 @@ public class ArrayQueue<E> implements Queue<E> {
 
     @Override
     public E dequeue() {
+        if (isEmpty()){
+            throw new RuntimeException("Queue is Empty! Don't allow to dequeue!");
+        }
         E e = myArray.removeFirst();
         return e;
     }

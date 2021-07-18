@@ -174,11 +174,11 @@ public class MyArray<E> {
             throw new IllegalArgumentException("get failed, argument is not allowed");
 
         E deleteElement = data[index];
-        System.out.println("存在元素");
+//        System.out.println("存在元素");
         for (int i = index ; i < size - 1 ; i ++){ //注意数组越界的问题
             data[i] = data[i + 1];
         }
-        System.out.println("数量减1");
+//        System.out.println("数量减1");
         size --;
         if (size == getCapacity() / 4 && getCapacity() / 2 != 0) { //注意这里的小bug
             resize(getCapacity() / 2);
