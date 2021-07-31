@@ -28,25 +28,43 @@ public class Main {
 //        System.out.println(arrayQueue);
 
 //        System.out.println("队列是否为空：" + arrayQueue.isEmpty());
+
+
         //循环队列
-        LoopQueue<Integer> loopQueue = new LoopQueue<>(4);
-        System.out.println("循环队列是否为空: " + loopQueue.isEmpty());
-        System.out.println("循环队列的长度: " + loopQueue.getSize());
+//        LoopQueue<Integer> loopQueue = new LoopQueue<>(4);
+//        System.out.println("循环队列是否为空: " + loopQueue.isEmpty());
+//        System.out.println("循环队列的长度: " + loopQueue.getSize());
+//
+//        for (int i = 0; i < 20; i++) {
+//            loopQueue.enqueue(i);
+//            System.out.println(loopQueue);
+//        }
+//
+//        System.out.println("队首元素为：" + loopQueue.getFront());
+//        System.out.println("出队：" + loopQueue.dequeue());
+//        System.out.println(loopQueue);
+//        System.out.println("循环队列的对头元素: " + loopQueue.getFront());
+//
+//        for (int i = 0; i < 11; i++) {
+//            loopQueue.dequeue();
+//            System.out.println(loopQueue);
+//        }
+
+        //循环队列
+        LinkedQueue<Integer> linkedQueue = new LinkedQueue<>();
+        System.out.println("循环队列是否为空: " + linkedQueue.isEmpty());
+        System.out.println("循环队列的长度: " + linkedQueue.getSize());
 
         for (int i = 0; i < 20; i++) {
-            loopQueue.enqueue(i);
-            System.out.println(loopQueue);
+            linkedQueue.enqueue(i);
+            System.out.println(linkedQueue);
         }
 
-        System.out.println("队首元素为：" + loopQueue.getFront());
-        System.out.println("出队：" + loopQueue.dequeue());
-        System.out.println(loopQueue);
-        System.out.println("循环队列的对头元素: " + loopQueue.getFront());
+        System.out.println("队首元素为：" + linkedQueue.getFront());
+        System.out.println("出队：" + linkedQueue.dequeue());
+        System.out.println(linkedQueue);
+        System.out.println("循环队列的对头元素: " + linkedQueue.getFront());
 
-        for (int i = 0; i < 11; i++) {
-            loopQueue.dequeue();
-            System.out.println(loopQueue);
-        }
     }
 }
 
