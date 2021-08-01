@@ -34,6 +34,7 @@ public class Main {
         System.out.println(bst);
         System.out.println("BST树的最小元素：" + bst.minimum());
         System.out.println("BST树的最大元素：" + bst.maximum());
+        bst.nonRecursionPreorder();
         bst.preorder();
         bst.inorder();
         bst.postorder();
@@ -47,6 +48,8 @@ public class Main {
         System.out.println("删除BST的最小值：" + bst.removeMax());
         System.out.println(bst);
 
-
+        System.out.println("删除元素3");
+        bst.delete(3);
+        System.out.println(bst);
     }
 }

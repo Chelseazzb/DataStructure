@@ -2,6 +2,7 @@ package per.zzb.tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * @ClassName : BST
@@ -175,6 +176,33 @@ public class BST<E extends Comparable> {
 
     }
 
+    //非递归的前序遍历
+    public void nonRecursionPreorder(){
+        int count = 1;
+        System.out.print("非递归的前序遍历：");
+
+        //定义队列存放节点
+        Stack<Node> stack = new Stack<>();
+
+        if (root == null)
+            return;
+
+        stack.add(root);
+
+        while (!stack.isEmpty()){
+            Node cur = stack.pop();
+            System.out.print(cur);
+            if (cur.right != null) {
+                stack.push(cur.right);
+            }
+            if (cur.left != null){
+                stack.push(cur.left);
+            }
+        }
+        System.out.println();
+
+    }
+
     //中序遍历
     public void inorder() {
         System.out.print("中序遍历：");
@@ -231,8 +259,49 @@ public class BST<E extends Comparable> {
 
 
     //删除节点
-    public Node delete(E e) {
-        return null;
+    public void delete(E e) {
+        root = delete(root,e);
+    }
+
+    //删除以node为根的BST中值为e的节点
+    //并返回新的树根，在该节点的右子树中找到最小值作为根
+    private Node delete(Node node, E e) {
+
+        //递归终止条件
+        if (node == null) {
+            return null;
+        }
+
+        if (e.compareTo(node.e) < 0){
+            node.left = delete(node.left,e);
+            return node;
+        } else if (e.compareTo(node.e) > 0){
+            node.right = delete(node.right,e);
+            return node;
+
+        } else { //要删除的就是这个节点
+
+            if (node.left == null){
+                Node right = node.right;
+                node.right = null;
+                size --;
+                return right;
+            }
+            if (node.right == null){
+                Node left = node.left;
+                node.left = null;
+                size --;
+                return left;
+            }
+
+            Node min = minimum(node.right);
+            min.left = node.left;
+            min.right = removeMin(node.right);
+            node.left = node.right = null;
+            return min;
+
+        }
+
     }
 
     //删除最小值节点
