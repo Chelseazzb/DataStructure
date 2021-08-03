@@ -54,64 +54,84 @@ public class BST<E extends Comparable> {
     //增加节点，不支持重复元素
     public void add(E e) {
 
-        if (root == null){
-            root = new Node(e);
+//        if (root == null){
+//            root = new Node(e);
+//            size ++;
+//        } else {
+//            add(root,e);
+//        }
+
+        root = add(root, e);
+    }
+
+    private Node add(Node node, E e) {
+        //这次递归到底
+        if (node == null) {
             size ++;
-        } else {
-            add(root,e);
+            return new Node(e);
         }
+
+        if (e.equals(node.e)) {
+            return node;
+        } else if (e.compareTo(node.e) < 0) {
+            node.left = add(node.left,e);
+        } else { // e.compareTo(node.e) > 0
+            node.right = add(node.right,e);
+        }
+
+        return node;
     }
 
     //可以进一步简化
-    private void add(Node node, E e) {
-
-        //设置递归终止条件
-        if (e.equals(node.e)){
-            return;
-        } else if (e.compareTo(node.e) < 0 && node.left == null) {
-            node.left = new Node(e);
-            size ++;
-            return;
-        } else if (e.compareTo(node.e) > 0 && node.right == null){
-            node.right = new Node(e);
-            size ++;
-            return;
-        }
-
-        //递归调用函数add
-        if (e.compareTo(node.e) < 0){
-            add(node.left,e);
-        }else {
-            add(node.right,e);
-        }
-    }
+//    private void add(Node node, E e) {
+//
+//        //设置递归终止条件
+//        if (e.equals(node.e)){
+//            return;
+//        } else if (e.compareTo(node.e) < 0 && node.left == null) {
+//            node.left = new Node(e);
+//            size ++;
+//            return;
+//        } else if (e.compareTo(node.e) > 0 && node.right == null){
+//            node.right = new Node(e);
+//            size ++;
+//            return;
+//        }
+//
+//        //递归调用函数add
+//        if (e.compareTo(node.e) < 0){
+//            add(node.left,e);
+//        }else {
+//            add(node.right,e);
+//        }
+//    }
 
     //查找节点
     public Node find(E e) {
 
-        Node node = find(root,e);
+        Node node = find(root, e);
         return node;
     }
 
     private Node find(Node node, E e) {
 
         //设置递归终止条件
-        if (e.equals(node.e)){
+        if (e.equals(node.e)) {
             return node;
-        } else if (e.compareTo(node.e) < 0 && node.left == null){
+        } else if (e.compareTo(node.e) < 0 && node.left == null) {
             System.out.println("没有找到此元素left: " + e);
             return null;
-        } else if (e.compareTo(node.e) > 0 && node.right == null){
+        } else if (e.compareTo(node.e) > 0 && node.right == null) {
             System.out.println("没有找到此元素right: " + e);
             return null;
         }
 
         Node res = null; //设置返回的节点
 
-        if (e.compareTo(node.e) < 0){
-            res = find(node.left,e);
+        if (e.compareTo(node.e) < 0) {
+            res = find(node.left, e);
         } else {
-            res = find(node.right,e);
+            res = find(node.right, e);
         }
 
         return res;
@@ -123,7 +143,7 @@ public class BST<E extends Comparable> {
     }
 
     private Node minimum(Node node) {
-        if (node == null){
+        if (node == null) {
             return null;
         }
 
@@ -139,7 +159,7 @@ public class BST<E extends Comparable> {
     }
 
     private Node maximum(Node node) {
-        if (node == null){
+        if (node == null) {
             return null;
         }
 
@@ -165,7 +185,7 @@ public class BST<E extends Comparable> {
     private void preorder(Node node) {
 
         //设置递归终止条件
-        if (node == null){
+        if (node == null) {
             return;
         }
 
@@ -177,7 +197,7 @@ public class BST<E extends Comparable> {
     }
 
     //非递归的前序遍历
-    public void nonRecursionPreorder(){
+    public void nonRecursionPreorder() {
         int count = 1;
         System.out.print("非递归的前序遍历：");
 
@@ -189,13 +209,13 @@ public class BST<E extends Comparable> {
 
         stack.add(root);
 
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             Node cur = stack.pop();
             System.out.print(cur);
             if (cur.right != null) {
                 stack.push(cur.right);
             }
-            if (cur.left != null){
+            if (cur.left != null) {
                 stack.push(cur.left);
             }
         }
@@ -211,7 +231,7 @@ public class BST<E extends Comparable> {
     }
 
     private void inorder(Node node) {
-        if (node == null){
+        if (node == null) {
             return;
         }
 
@@ -229,7 +249,7 @@ public class BST<E extends Comparable> {
     }
 
     private void postorder(Node node) {
-        if (node == null){
+        if (node == null) {
             return;
         }
         postorder(node.left);
@@ -243,14 +263,14 @@ public class BST<E extends Comparable> {
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
 
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             Node cur = queue.remove();
             System.out.print(cur);
 
-            if (cur.left != null){
+            if (cur.left != null) {
                 queue.add(cur.left);
             }
-            if (cur.right != null){
+            if (cur.right != null) {
                 queue.add(cur.right);
             }
         }
@@ -260,7 +280,7 @@ public class BST<E extends Comparable> {
 
     //删除节点
     public void delete(E e) {
-        root = delete(root,e);
+        root = delete(root, e);
     }
 
     //删除以node为根的BST中值为e的节点
@@ -272,25 +292,25 @@ public class BST<E extends Comparable> {
             return null;
         }
 
-        if (e.compareTo(node.e) < 0){
-            node.left = delete(node.left,e);
+        if (e.compareTo(node.e) < 0) {
+            node.left = delete(node.left, e);
             return node;
-        } else if (e.compareTo(node.e) > 0){
-            node.right = delete(node.right,e);
+        } else if (e.compareTo(node.e) > 0) {
+            node.right = delete(node.right, e);
             return node;
 
         } else { //要删除的就是这个节点
 
-            if (node.left == null){
+            if (node.left == null) {
                 Node right = node.right;
                 node.right = null;
-                size --;
+                size--;
                 return right;
             }
-            if (node.right == null){
+            if (node.right == null) {
                 Node left = node.left;
                 node.left = null;
-                size --;
+                size--;
                 return left;
             }
 
@@ -305,7 +325,7 @@ public class BST<E extends Comparable> {
     }
 
     //删除最小值节点
-    public E removeMin(){
+    public E removeMin() {
         Node min = minimum(root);
         root = removeMin(root);
         return min.e;
@@ -314,10 +334,10 @@ public class BST<E extends Comparable> {
     private Node removeMin(Node node) {
 
         //设置递归终止条件
-        if (node.left == null){
+        if (node.left == null) {
             Node right = node.right;
             node.right = null;
-            size --;
+            size--;
             return right;
         }
 
@@ -327,7 +347,7 @@ public class BST<E extends Comparable> {
 
 
     //删除最大值节点
-    public E removeMax(){
+    public E removeMax() {
         Node max = maximum();
         removeMax(root);
         return max.e;
@@ -336,10 +356,10 @@ public class BST<E extends Comparable> {
     private Node removeMax(Node node) {
 
         //设置递归终止条件
-        if (node.right == null){
+        if (node.right == null) {
             Node left = node.left;
             node.left = null;
-            size --;
+            size--;
             return left;
         }
 
@@ -352,19 +372,19 @@ public class BST<E extends Comparable> {
     public String toString() {
         StringBuilder res = new StringBuilder();
         System.out.println();
-        generateBSTString(res,0,root);
+        generateBSTString(res, 0, root);
         return res.toString();
     }
 
-    private void generateBSTString(StringBuilder res, int depth, Node node){
+    private void generateBSTString(StringBuilder res, int depth, Node node) {
         if (node == null) {
             res.append(generateDepthString(depth) + "null\n");
             return;
         }
 
         res.append(generateDepthString(depth) + node + "\n");
-        generateBSTString(res,depth+1,node.left);
-        generateBSTString(res,depth+1,node.right);
+        generateBSTString(res, depth + 1, node.left);
+        generateBSTString(res, depth + 1, node.right);
     }
 
     //表示树的深度
