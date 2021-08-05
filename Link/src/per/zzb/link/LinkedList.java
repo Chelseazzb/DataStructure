@@ -56,10 +56,10 @@ public class LinkedList<E> {
     }
 
     //判断链表是否包含元素e
-    public boolean contain(E e){
+    public boolean contain(E e) {
         Node cur = dummyHead.next;
-        while (cur != null){
-            if (cur.e.equals(e)){
+        while (cur != null) {
+            if (cur.e.equals(e)) {
                 return true;
             }
             cur = cur.next;
@@ -73,7 +73,7 @@ public class LinkedList<E> {
         Node prev = dummyHead;
 
         //判断异常情况
-        if (index < 0 || index > size){
+        if (index < 0 || index > size) {
             throw new IllegalArgumentException("Index is out of Link size !");
         }
 
@@ -90,22 +90,22 @@ public class LinkedList<E> {
     }
 
     //在链表头插入元素
-    public void addFirst(E e){
-        add(0 , e);
+    public void addFirst(E e) {
+        add(0, e);
     }
 
     //在链表最后插入元素
-    public void addLast(E e){
-        add(size , e);
+    public void addLast(E e) {
+        add(size, e);
     }
 
     //删除链表中的元素
-    public void delete(int index){
+    public void delete(int index) {
         E oldValue = get(index);
-        System.out.printf("链表中第%d个位置的元素是：" + oldValue + "\n",index+1);
+        System.out.printf("链表中第%d个位置的元素是：" + oldValue + "\n", index + 1);
 
         Node prev = dummyHead;
-        for (int i = 0 ; i < index; i++){
+        for (int i = 0; i < index; i++) {
             prev = prev.next;
         }
 
@@ -113,26 +113,52 @@ public class LinkedList<E> {
         prev.next = cur.next;
         cur = null;
 
-        size --;
+        size--;
     }
 
     //删除链表的头元素
-    public void deleteFirst(){
+    public void deleteFirst() {
         delete(0);
     }
 
     //删除链表的头元素
-    public void deleteLast(){
+    public void deleteLast() {
         delete(size - 1);
     }
 
+    //删除链表中的特定元素
+    public void remove(E e) {
+        if (isEmpty()) {
+            System.out.println("链表为空，无法删除！");
+            return;
+        }
+
+        Node prev = dummyHead; //记录删除的前一个节点
+        Node cur = dummyHead.next;
+        while (cur != null) {
+
+            if (e.equals(cur.e)) //cur就是要删除的节点
+                break;
+            else{
+                prev = prev.next;
+                cur = cur.next;
+            }
+        }
+
+        //删除cur
+        prev.next = cur.next;
+        cur.next = null;
+        size --;
+
+    }
+
     //修改链表中的元素
-    public void update(int index, E e){
+    public void update(int index, E e) {
         E oldValue = get(index);
-        System.out.printf("链表中第%d个位置修改前的元素是：" + oldValue + "\n",index+1);
+        System.out.printf("链表中第%d个位置修改前的元素是：" + oldValue + "\n", index + 1);
 
         Node cur = dummyHead.next;
-        for (int i = 0 ; i < index; i++){
+        for (int i = 0; i < index; i++) {
             cur = cur.next;
         }
 
@@ -140,15 +166,15 @@ public class LinkedList<E> {
     }
 
     //查询链表中的元素
-    public E get(int index){
+    public E get(int index) {
 
         //判断异常情况
-        if (index < 0 || index > size){
+        if (index < 0 || index > size) {
             throw new IllegalArgumentException("Index is out of Link size !");
         }
 
         //判断链表是否为空
-        if (isEmpty()){
+        if (isEmpty()) {
             return null;
         }
 
@@ -162,13 +188,13 @@ public class LinkedList<E> {
     }
 
     //查询链表头元素
-    public E getFirst(){
+    public E getFirst() {
         return get(0);
     }
 
     //查询链表尾部元素
-    public E getLast(){
-        return get(size-1);
+    public E getLast() {
+        return get(size - 1);
     }
 
     //遍历链表
@@ -177,7 +203,7 @@ public class LinkedList<E> {
         Node cur = dummyHead.next;
         System.out.print("Head -> ");
         //设置链表为空的输出情况
-        if (isEmpty()){
+        if (isEmpty()) {
             System.out.print("null");
         }
         //遍历链表

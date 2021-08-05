@@ -28,8 +28,9 @@ public class Main {
         linkedList.update(1, 3);
         System.out.println(linkedList);
 
-        linkedList.deleteLast();
-        linkedList.deleteFirst();
+//        linkedList.deleteLast();
+//        linkedList.deleteFirst();
+        linkedList.remove(3);
         linkedList.traverse();
     }
 }
