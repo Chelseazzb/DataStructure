@@ -27,13 +27,18 @@ public class LinkedListMap<K extends Comparable, V> implements Map<K, V> {
 
         @Override
         public String toString() {
-            return "Key:"+k.toString()+"Value:"+v.toString()+" ";
+            return "(Key:"+k.toString()+",Value:"+v.toString()+")";
         }
     }
 
     //定义头结点和链表长度
     private Node dummyHead;
     private int size;
+
+    public LinkedListMap() {
+        dummyHead = new Node();
+        size = 0;
+    }
 
     @Override
     public boolean isEmpty() {
@@ -53,7 +58,7 @@ public class LinkedListMap<K extends Comparable, V> implements Map<K, V> {
     @Override
     public void add(K k, V v) {
         if (contains(k)){
-            System.out.println("Key: "+k.toString()+"在map中已经存在！");
+//            System.out.println("Key: "+k.toString()+"在map中已经存在！");
             return;
         }
 
@@ -73,7 +78,7 @@ public class LinkedListMap<K extends Comparable, V> implements Map<K, V> {
         //遍历链表
         while (cur != null){
             if (k.equals(cur.k)){
-                System.out.println("Key为"+k.toString()+"的值为"+v.toString());
+//                System.out.println("Key为"+k.toString()+"的值为"+v.toString());
                 cur.v = v;
                 break;
             }
@@ -95,6 +100,7 @@ public class LinkedListMap<K extends Comparable, V> implements Map<K, V> {
                 prev.next = cur.next;
                 size --;
                 cur.next = null;
+                break;
             } else {
                 prev = prev.next;
                 cur = cur.next;
@@ -123,6 +129,15 @@ public class LinkedListMap<K extends Comparable, V> implements Map<K, V> {
 
     @Override
     public String toString() {
-        return "LinkedListMap{}";
+        StringBuilder res = new StringBuilder();
+        res.append("LinkedListMap{ ");
+        Node cur = dummyHead.next;
+        while (cur != null){
+            res.append(cur +"->");
+            cur = cur.next;
+
+        }
+        res.append("null }");
+        return res.toString();
     }
 }
