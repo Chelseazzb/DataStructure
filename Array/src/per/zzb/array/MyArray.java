@@ -165,8 +165,9 @@ public class MyArray<E> {
             throw new IllegalArgumentException("get failed, argument is not allowed");
 
         E deleteElement = data[index];
-        for (int i = index; i < size; i++) {
-            data[i] = data[i + 1];
+        for (int i = index +1 ; i < size; i++) {
+            //注意数组的边界
+            data[i-1] = data[i];
         }
 
         size--;
