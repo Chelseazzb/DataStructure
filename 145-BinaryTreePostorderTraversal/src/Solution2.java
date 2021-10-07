@@ -42,6 +42,14 @@ public class Solution2 {
 
             TreeNode node = stack.peek();
             if (node != null){
+                stack.pop();
+                stack.push(node);
+                stack.push(null); //加入空节点作为弹出标记
+
+                if (node.right != null)
+                    stack.push(node.right);
+                if (node.left != null)
+                    stack.push(node.left);
 
             } else {
                 stack.pop(); //弹出空节点
