@@ -152,12 +152,9 @@ public class BST<E extends Comparable> {
     }
 
     private Node minimum(Node node) {
-        if (node == null) {
-            return null;
-        }
-
-        if (node.right == null)
+        if (node.left == null) {
             return node;
+        }
 
         return minimum(node.left);
     }

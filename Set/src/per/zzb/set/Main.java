@@ -27,6 +27,12 @@ public class Main {
 
             System.out.println("Non-repeated word size is " + set.getSize());
 
+            for (String str : list){
+                set.contains(str);
+            }
+
+
+
             Long endTime = System.nanoTime();
 
             System.out.println("Time："+ (double)(endTime - startTime)/1000000000 + "s");
@@ -61,8 +67,10 @@ public class Main {
 
         LinkedListSet<String> set1 = new LinkedListSet<>();
         BSTSet<String> set2 = new BSTSet<>();
+        AVLSet<String> set3 = new AVLSet<>();
 
         new Main().getCount(set1,"pride-and-prejudice.txt");
         new Main().getCount(set2,"pride-and-prejudice.txt");
+        new Main().getCount(set3,"pride-and-prejudice.txt");
     }
 }
