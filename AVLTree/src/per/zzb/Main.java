@@ -12,8 +12,12 @@ public class Main {
 
     public static void main(String[] args) {
         //初始化一棵树
-        AVL<Integer> bst = new AVL<>();
+        AVL<Integer,Integer> bst = new AVL<>();
         int[] arr = {5,3,6,8,4,2};
+        int[] ll  = {6,4,7,3,5,2};
+        int[] rr  = {6,4,8,7,9,10};
+        int[] lr  = {6,3,7,2,5,4};
+        int[] rl  = {6,5,10,8,11,9};
 
         System.out.println("BST树是否为空：" + bst.isEmpty());
 
@@ -24,10 +28,12 @@ public class Main {
         //         2   4     8
         
         System.out.print("向BST中添加元素：" );
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i]);
-            bst.add(arr[i]);
+        for (int i = 0; i < rl.length; i++) {
+            System.out.print(rl[i]);
+            bst.add(rl[i],rl[i]);
         }
+        System.out.println();
+        System.out.println("当前的AVL是否保持了平衡：" + bst.isBalanced());
         System.out.println();
         System.out.println("BST树是否为空：" + bst.isEmpty());
         System.out.println("BST树节点数量：" + bst.getSize());
@@ -44,12 +50,10 @@ public class Main {
         System.out.println("查找元素3：" + bst.find(3));
         System.out.println("查找元素7：" + bst.find(7));
 
-        System.out.println("删除BST的最小值：" + bst.removeMin());
-        System.out.println("删除BST的最大值：" + bst.removeMax());
-        System.out.println(bst);
 
+        bst.add(12,12);
         System.out.println("删除元素3");
-        bst.delete(3);
+        bst.remove(5);
         System.out.println(bst);
     }
 }
