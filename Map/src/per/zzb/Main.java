@@ -80,6 +80,7 @@ public class Main {
 
         LinkedListMap<String, Integer> map1 = new LinkedListMap<>();
         BSTMap<String,Integer> map2 = new BSTMap<>();
+        AVLMap<String,Integer> map3 = new AVLMap<>();
 
         String filename = "pride-and-prejudice.txt";
 
@@ -102,8 +103,9 @@ public class Main {
 //            System.out.println("pride出现的次数：" + count);
 //        }
 
-        System.out.println("Pride出现的次数为：" + new Main().getCount(map1,filename,"pride"));
+        System.out.println("Pride出现的次数为：" + new Main().getCount(map1,filename,"prejudice"));
         System.out.println("Prejudice出现的次数为：" + new Main().getCount(map2,filename,"prejudice"));
+        System.out.println("Prejudice出现的次数为：" + new Main().getCount(map3,filename,"prejudice"));
 
     }
 }

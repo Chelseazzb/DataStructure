@@ -28,7 +28,8 @@ public class LinkedListSet<E extends Comparable> implements Set<E> {
 
     @Override
     public void add(E e) {
-        linkedList.addFirst(e);
+        if (!contains(e))
+            linkedList.addFirst(e);
     }
 
     @Override
