@@ -10,6 +10,7 @@
 public class Solution {
 
 
+    //贪心体现在一直需要波峰和波谷，去掉单调递增或递减的
     public int wiggleMaxLength(int[] nums) {
         if (nums == null || nums.length <= 1) {
             return nums.length;
