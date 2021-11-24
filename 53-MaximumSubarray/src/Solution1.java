@@ -17,4 +17,11 @@ public class Solution1 {
         }
         return result;
     }
+
+    public static void main(String[] args) {
+        Solution1 solution1 = new Solution1();
+
+        int[] nums = new int[]{-2,Integer.MIN_VALUE,1};
+        solution1.maxSubArray(nums);
+    }
 }

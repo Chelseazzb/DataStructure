@@ -8,10 +8,10 @@ public class Solution {
         if (nums.length == 1)
             return nums[0];
 
-        int max = Integer.MIN_VALUE;
+        long max = Integer.MIN_VALUE;
         //暴力解法
         for (int i = 0; i < nums.length; i++) {
-            int sum = 0;
+            long sum = 0;
             for (int j = i; j < nums.length; j++) {
                 sum += nums[j];
                 if (sum > max)
@@ -20,13 +20,13 @@ public class Solution {
 
         }
 
-        return max;
+        return (int)max;
     }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
 
-        int[] nums = new int[]{-2,1};
+        int[] nums = new int[]{-2,Integer.MIN_VALUE,1}; //如果数组中有最小值，会超出int边界
         System.out.println(solution.maxSubArray(nums));
     }
 }
