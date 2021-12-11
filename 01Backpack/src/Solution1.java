@@ -15,7 +15,7 @@ public class Solution1 {
     public static void testWeightBagProblem(int[] weight, int[] value, int bagWeight){
         int wLen = weight.length;
         //定义dp数组：dp[j]表示背包容量为j时，能获得的最大价值
-        int[] dp = new int[bagWeight + 1];
+        int[] dp = new int[bagWeight + 1]; //初始化全为0
         //遍历顺序：先遍历物品，再遍历背包容量
         for (int i = 0; i < wLen; i++){
             for (int j = bagWeight; j >= weight[i]; j--){ //倒叙遍历是为了保证物品i只被放入一次！。但如果一旦正序遍历了，那么物品0就会被重复加入多次！
