@@ -9,6 +9,7 @@ public class Solution {
     //p 可能为空，且只包含从 a-z 的小写字母以及字符 . 和 *，无连续的 '*'。
 
     // 最直观版
+    //还不能完全理解状态转移方程
     public boolean isMatch(String s, String p) {
         int m = s.length();
         int n = p.length();
