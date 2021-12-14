@@ -34,12 +34,12 @@ public class Solution {
         ListNode first = head;
         ListNode behind = null;
 
-        for (int i = 0; i < k - 1; i++) {
-            first = first.next; //先走k-1步
+        for (int i = 0; i < k ; i++) {
+            first = first.next; //先走k步
         }
 
         behind = head;
-        while (first != null){ //first走到尾，一共是size-k+1步
+        while (first != null){ //first走到尾，和behind相差k步
             first = first.next;
             behind = behind.next;
         }
