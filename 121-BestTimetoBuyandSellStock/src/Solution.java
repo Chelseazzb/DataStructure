@@ -7,22 +7,22 @@ public class Solution {
     //1 <= prices.length <= 105
     //0 <= prices[i] <= 104
     public int maxProfit(int[] prices) {
-        int[] dp = new int[prices.length];
-        //初始化全为0即可
+        int[][] dp = new int[prices.length][2];
+        //初始化
+        dp[0][0] = -prices[0]; //dp[i][0]代表第i天持有股票
+        dp[0][1] = 0; //dp[i][1]代表第i天不持有股票
         //两重循环
         for (int i = 1; i < prices.length; i++) {
-            for (int j = 0; j < prices.length; j++) {
-                if (i > j && prices[i] > prices[j])
-                    dp[i] = Math.max(dp[i-1], prices[i] - prices[j]);
-            }
+            dp[i][0] = Math.max(dp[i-1][0],-prices[i]); //之前买入或者当天买入
+            dp[i][1] = Math.max(dp[i-1][1],prices[i] + dp[i - 1][0]);
         }
 
-        return dp[prices.length-1];
+        return dp[prices.length-1][1];
     }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[] prices = new int[]{7,1,5,3,6,4};
-        solution.maxProfit(prices);
+        System.out.println(solution.maxProfit(prices));
     }
 }
