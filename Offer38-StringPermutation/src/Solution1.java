@@ -38,6 +38,5 @@ public class Solution1 {
             visited[i] = false;
             tmp.deleteCharAt(tmp.length() - 1);
         }
-
     }
 }
